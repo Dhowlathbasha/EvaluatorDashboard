@@ -1,0 +1,8 @@
+npm install 
+npm install --force
+npm install --legacy-peer-deps
+npm audit fix --force
+
+ncu 
+ncu -u
+npm install
