@@ -1,10 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
-import mongoon from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
-import helmet from "helmet";
-import morgan from "morgan";
 import dotenv from "dotenv";
+import helmet from "helmet";
+import morgan from "morgan"; 
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -28,5 +28,12 @@ app.use(cors());
 console.log("Server started ...");
 
 /* MONGOOSE SETUP */
+const  PORT = process.env.PORT || 9000;
 
-
+mongoose
+.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(async () => {
+    app.listen(PORT,()=> console.log(`Server Port : ${PORT  }`))
+}).catch(err => console.log(`${err} did not connect ... `));
